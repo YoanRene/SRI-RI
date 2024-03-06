@@ -7,7 +7,7 @@ class Lsi_model:
         self.X = self.vectorizer.fit_transform(corpus)
 
         # Realizar descomposición en valores singulares (SVD)
-        n_topics = 2  # Número de temas (conceptos) deseados
+        n_topics = 200  # Número de temas (conceptos) deseados
         self.lsa = TruncatedSVD(n_components=n_topics)
         self.lsa.fit(self.X)
 
