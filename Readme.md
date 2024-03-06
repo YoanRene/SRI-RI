@@ -8,7 +8,7 @@
 ## Modelo Indexación de Semántica Latente (LSI)
 El **Modelo de Indexación de Semántica Latente (LSI)** es una técnica de procesamiento de lenguaje natural que permite representar documentos de texto en un espacio semántico reducido. A través de la descomposición en valores singulares (SVD) de una matriz término-documento, LSI captura las relaciones semánticas entre palabras y documentos.
 
-- **Matriz Término-Documento**: Representa la frecuencia de ocurrencia de términos en los documentos.
+- **Matriz Término-Documento**: Representa una ponderación de términos en los documentos. En este caso usamos la ponderación tf-idf vista en conferencia.
 - **Descomposición SVD**: Reduce la dimensionalidad de la matriz original y extrae los conceptos latentes.
 - **Espacio Semántico Reducido**: Los documentos se representan en términos de estos conceptos latentes.
 
@@ -35,9 +35,19 @@ Nuestra solución consiste en:
 2. **Cálculo de Similitud**: Utilizamos la similitud del coseno para encontrar los documentos más relevantes para una consulta dada.
 
 ### Definiciones Matemáticas
-- **Matriz Término-Documento**: \(X\), donde \(X_{ij}\) representa la frecuencia del término \(i\) en el documento \(j\).
-- **Descomposición SVD**: \(X = U \Sigma V^T\), donde \(U\) y \(V\) son matrices ortogonales y \(\Sigma\) es una matriz diagonal con los valores singulares.
-- **Representación LSI**: \(X_{\text{LSI}} = U_k \Sigma_k V_k^T\), donde \(k\) es la dimensión reducida.
+- **Matriz Término-Documento**: $X$, donde $X_{ij}$ representa el **TF-IDF** $i$ en el documento $j$.
+- **Descomposición SVD**: $X = U \Sigma V^T$, donde $U$ y $V$ son matrices ortogonales y $\Sigma$ es una matriz diagonal con los valores singulares.
+- **Representación LSI**: $X_{\text{LSI}} = U_k \Sigma_k V_k^T$, donde $k$ es la dimensión reducida.
+
+#### Fórmulas adicionales:
+1. **TF (Frecuencia del Término)**:
+   - $\text{TF}(t,d) = \frac{f(t,d)}{\sum_{t' \in d} f(t',d)}$, donde $f(t,d)$ es el recuento crudo del término $t$ en el documento $d$.
+
+2. **IDF (Inverso de la Frecuencia del Documento)**:
+   - $\text{IDF}(t) = \log\left(\frac{N}{\text{df}(t)}\right)$, donde $N$ es el número total de documentos y $\text{df}(t)$ es la frecuencia de documentos que contienen el término $t$.
+
+3. **TF-IDF (Frecuencia del Término-Inverso de la Frecuencia del Documento)**:
+   - $\text{TF-IDF}(t,d) = \text{TF}(t,d) \cdot \text{IDF}(t)$
 
 ## Insuficiencias y Mejoras Propuestas
 Algunas insuficiencias de nuestra solución son:
