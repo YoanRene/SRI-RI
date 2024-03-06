@@ -1,11 +1,24 @@
-import gensim
+import ir_datasets
+import numpy as np
+import query
+import lsi_model 
+from sklearn.metrics.pairwise import cosine_similarity
 import precomputer
 
-precomputed = precomputer.Precomputed()
+dataset=ir_datasets.load('cranfield')
 
-similarity_scores = [gensim.matutils.cossim(query_.tfidf, doc) for doc in precomputed.model.vector_repr]
+precomputed = precomputer.Precomputed(dataset=dataset)
 
-ranking_indices = sorted(range(len(similarity_scores)), key=lambda i: similarity_scores[i], reverse=True)
+lsi=lsi_model.Lsi_model(precomputed.corpus)
 
-for idx in ranking_indices[:11]:
-    print(f"Song = '{precomputed.df['song'][idx]}' Similarity = {similarity_scores[idx]}")    
+q = query.Query('data analysis',lsi)
+
+similarities = cosine_similarity(q.vector, lsi.lsa.transform(lsi.X))
+
+# Ordenar los documentos por similitud
+most_similar_indices = np.argsort(similarities[0])[::-1]
+
+# Mostrar los documentos más similares a la consulta
+print("Documentos más similares a la consulta:")
+for idx in most_similar_indices[:4]:
+    print(f"- {precomputed.corpus[idx][:100]}...")
