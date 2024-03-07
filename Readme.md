@@ -48,6 +48,11 @@ Nuestra solución consiste en:
 
 3. **TF-IDF (Frecuencia del Término-Inverso de la Frecuencia del Documento)**:
    - $\text{TF-IDF}(t,d) = \text{TF}(t,d) \cdot \text{IDF}(t)$
+4. **Metricas para evaluar el modelo**:
+    - $\text{Precision}=\frac{|RelevantesRecuperados|}{|Recuperados|}$
+    - $\text{Recobrado}=\frac{|RelevantesRecuperados|}{|Relevantes|}$
+    - $\text{F1}=\frac{2*\text{Precision}*\text{Recobrado}}{\text{Precision}+\text{Recobrado}}$
+    - $\text{Fallout}=\frac{|RecuperadosIrrelevantes|}{|Recuperados|}$
 
 ## Insuficiencias y Mejoras Propuestas
 Algunas insuficiencias de nuestra solución son:
