@@ -52,7 +52,7 @@ Nuestra solución consiste en:
     - $\text{Precision}=\frac{|RelevantesRecuperados|}{|Recuperados|}$
     - $\text{Recobrado}=\frac{|RelevantesRecuperados|}{|Relevantes|}$
     - $\text{F1}=\frac{2*\text{Precision}*\text{Recobrado}}{\text{Precision}+\text{Recobrado}}$
-    - $\text{Fallout}=\frac{|RecuperadosIrrelevantes|}{|Recuperados|}$
+    - $\text{Fallout}=\frac{|IrrelevantesRecuperados|}{|Recuperados|}$
 
 ## Insuficiencias y Mejoras Propuestas
 Algunas insuficiencias de nuestra solución son:
